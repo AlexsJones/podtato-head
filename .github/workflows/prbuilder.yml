@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up QEMU
       - name: Build V0.1.0
         uses: docker/build-push-action@v2
         with:
