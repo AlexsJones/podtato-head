@@ -33,7 +33,8 @@ jobs:
           context: .
           file: docker/DockerfileV0.1.0
           push: true
-          tags:  ghcr.io/${{ github.repository_owner }}/podtato-head/podtatoserver:v0.1.0
+          registry: docker.pkg.github.com
+          tags:  ${{ github.repository_owner }}/podtatoserver:v0.1.0
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Build V0.1.1
@@ -42,7 +43,8 @@ jobs:
           context: .
           file: docker/DockerfileV0.1.1
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/podtato-head/podtatoserver:v0.1.1
+          registry: docker.pkg.github.com
+          tags:  ${{ github.repository_owner }}/podtatoserver:v0.1.1
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Build V0.1.2
@@ -51,7 +53,8 @@ jobs:
           context: .
           file: docker/DockerfileV0.1.2
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/podtato-head/podtatoserver:v0.1.2
+          registry: docker.pkg.github.com
+          tags:  ${{ github.repository_owner }}/podtatoserver:v0.1.2
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Move cache
