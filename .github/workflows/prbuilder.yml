@@ -33,33 +33,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
       # Completed cache setup
-      - name: Build V0.1.0
-        uses: docker/build-push-action@v2
-        with:
-          context: ./podtato-server
-          file: ./docker/DockerfileV0.1.0
-          push: true
-          tags:  localhost:5000/podtato-head/podtatoserver:v0.1.0
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-      - name: Build V0.1.1
-        uses: docker/build-push-action@v2
-        with:
-          context: ./podtato-server
-          file: ./docker/DockerfileV0.1.1
-          push: true
-          tags: localhost:5000/podtato-head/podtatoserver:v0.1.1
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-      - name: Build V0.1.2
-        uses: docker/build-push-action@v2
-        with:
-          context: ./podtato-server
-          file: ./docker/DockerfileV0.1.2
-          push: true
-          tags: localhost:5000/podtato-head/podtatoserver:v0.1.2
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
+      - name: Build
+        run: |
+          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.0 --iidfile /tmp/docker-build-push-STFpKK/iidfile --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.0 --push .
+          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.1 --iidfile /tmp/docker-build-push-STFpKK/iidfile --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.1 --push .
+          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.2 --iidfile /tmp/docker-build-push-STFpKK/iidfile --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.2 --push .
       - name: Move cache
         run: |
             rm -rf /tmp/.buildx-cache
