@@ -27,9 +27,9 @@ jobs:
       - name: Build
         run: |
           cd podtato-server
-          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.0 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.0 --push .
-          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.1 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.1 --push .
-          docker buildx build --tag localhost:5000/podtato-head/podtatoserver:v0.1.2 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.2 --push .
+          docker buildx build --tag podtatoserver:v0.1.0 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.0 .
+          docker buildx build --tag podtatoserver:v0.1.1 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.1 .
+          docker buildx build --tag podtatoserver:v0.1.2 --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --file ./docker/DockerfileV0.1.2 .
       - name: Move cache
         run: |
             rm -rf /tmp/.buildx-cache
