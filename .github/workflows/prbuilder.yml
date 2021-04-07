@@ -1,0 +1,20 @@
+name: PRBuilder
+
+# Controls when the action will run. 
+on: [ pull_request ]
+
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Containers
+        run: >
+          cd podtato-server && 
+          declare -a TAGS=("0.1.0" "0.1.1" "0.1.2")
+          for TAG in "${TAGS[@]}"
+          do
+            docker build -f docker/DockerfileV"${TAG}" . --tag "${REPOSITORY}"/podtatoserver:v"${TAG}"
+          done
