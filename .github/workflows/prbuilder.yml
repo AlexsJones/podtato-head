@@ -10,6 +10,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./podtatoserver
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
@@ -26,8 +29,8 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+      # Completed cache setup
       - name: Build V0.1.0
-        working-directory: ./podtatoserver
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -37,7 +40,6 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Build V0.1.1
-        working-directory: ./podtatoserver
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -47,7 +49,6 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Build V0.1.2
-        working-directory: ./podtatoserver
         uses: docker/build-push-action@v2
         with:
           context: .
