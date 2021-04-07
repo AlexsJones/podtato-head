@@ -13,21 +13,21 @@ jobs:
       - name: Build V0.1.0
         uses: docker/build-push-action@v2
         with:
-          context: podtato-server
-          file: ./docker/DockerfileV0.1.0
+          context: .
+          file: ./podtato-server/docker/DockerfileV0.1.0
           push: false
           tags: podtatoserver:v0.1.0
       - name: Build V0.1.1
         uses: docker/build-push-action@v2
         with:
-          context: podtato-server
-          file: ./docker/DockerfileV0.1.1
+          context: .
+          file: ./podtato-server/docker/DockerfileV0.1.1
           push: false
           tags: podtatoserver:v0.1.1
       - name: Build V0.1.2
         uses: docker/build-push-action@v2
         with:
-          context: podtato-server
-          file: ./docker/DockerfileV0.1.2
+          context: .
+          file: ./podtato-server/docker/DockerfileV0.1.2
           push: false
           tags: podtatoserver:v0.1.2
