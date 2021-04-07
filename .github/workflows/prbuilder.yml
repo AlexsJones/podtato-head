@@ -36,7 +36,7 @@ jobs:
       - name: Build V0.1.0
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./podtato-server
           file: ./docker/DockerfileV0.1.0
           push: true
           tags:  localhost:5000/podtato-head/podtatoserver:v0.1.0
@@ -45,7 +45,7 @@ jobs:
       - name: Build V0.1.1
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./podtato-server
           file: ./docker/DockerfileV0.1.1
           push: true
           tags: localhost:5000/podtato-head/podtatoserver:v0.1.1
@@ -54,7 +54,7 @@ jobs:
       - name: Build V0.1.2
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./podtato-server
           file: ./docker/DockerfileV0.1.2
           push: true
           tags: localhost:5000/podtato-head/podtatoserver:v0.1.2
